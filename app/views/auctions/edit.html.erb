@@ -1,0 +1,13 @@
+<h1>Auctions#edit</h1>
+<p>Find me in app/views/auctions/edit.html.erb</p>
+
+
+<%= form_for @auction do |f| %>
+	<%= f.text_field :body, placeholder: "Name of item" %>
+	<!-- CHANGE HERE -->
+	<%= f.fields_for :bids, @auction.bids do |b| %>
+		<%= b.text_field :amount, placeholder: "min amount" %>
+		 
+	<% end %>
+	<%= f.submit %>
+<% end %>
