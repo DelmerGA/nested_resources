@@ -5,6 +5,7 @@ class AuctionsController < ApplicationController
 
   def edit
   	@auction = Auction.find(params[:id])
+    @bid = @auction.bids.first
   end
 
   def index
@@ -25,6 +26,10 @@ class AuctionsController < ApplicationController
   end
 
   def update
+    #raise params.inspect
+    auction = Auction.find(params[:id])
+    auction.update_attributes(params[:auction].permit(:body, :bids_attributes=>[:amount,:id]))
+    redirect_to auction
   end
 
 
